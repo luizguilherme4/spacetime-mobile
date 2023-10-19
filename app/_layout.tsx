@@ -13,15 +13,27 @@ import blurBg from '../assets/bg-blur.png'
 import Stripes from '../assets/stripes.svg'
 import { SplashScreen, Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
+import { useEffect, useState } from 'react'
+import * as SecureStore from 'expo-secure-store'
 
 const StyledStripes = styled(Stripes)
 
 export default function Layout() {
+  const [isUserAutheticated, setIsUserAuthenticated] = useState<null | boolean>(
+    null,
+  )
+
   const [hasLoadedFonts] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold,
     BaiJamjuree_700Bold,
   })
+
+  useEffect(() => {
+    SecureStore.getItemAsync('token').then((token) => {
+      setIsUserAuthenticated(!!token)
+    })
+  }, [])
 
   if (!hasLoadedFonts) {
     return <SplashScreen />
@@ -41,7 +53,10 @@ export default function Layout() {
           headerShown: false,
           contentStyle: { backgroundColor: 'transparent' },
         }}
-      />
+      >
+        <Stack.Screen name="index" redirect={isUserAutheticated} />
+        <Stack.Screen name="memories" />
+      </Stack>
     </ImageBackground>
   )
 }
