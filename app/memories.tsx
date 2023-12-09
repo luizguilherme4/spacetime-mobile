@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, ScrollView } from 'react-native'
+import { View, TouchableOpacity, ScrollView, Image, Text } from 'react-native'
 import { Link, useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import NLWLogo from '../assets/nlw-spacetime-logo.svg'
@@ -20,7 +20,7 @@ export default function NewMemory() {
       className="flex-1 px-8"
       contentContainerStyle={{ paddingBottom: bottom, paddingTop: top }}
     >
-      <View className="mt-7 flex-row items-center justify-between">
+      <View className="mt-4 flex-row items-center justify-between">
         <NLWLogo />
 
         <View className="flex-row gap-2">
@@ -36,6 +36,39 @@ export default function NewMemory() {
               <Icon name="plus" size={16} color="#000" />
             </TouchableOpacity>
           </Link>
+        </View>
+      </View>
+
+      <View className="mt-6 space-y-10">
+        <View className="space-y-4">
+          <View className="flex-row items-center gap-2">
+            <View className="h-px w-5 bg-gray-50" />
+            <Text className="font-body text-xs text-gray-100">
+              12 de Abril, 2023
+            </Text>
+          </View>
+          <View className="space-y-4">
+            <Image
+              source={{
+                uri: 'http://192.168.3.111:3333/uploads/1ab7edce-b6cd-442f-ad09-8f21a6ef28f5.jpg',
+              }}
+              className="aspect-video w-full rounded-lg"
+              alt=""
+            />
+            <Text className="font-body text-base leading-relaxed text-gray-100">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolor
+              numquam nostrum nobis? Praesentium nostrum quo ut quis ad. Dolorem
+              porro quia ab dignissimos? Enim at praesentium cum iste beatae.
+            </Text>
+            <Link href="/memories/id" asChild>
+              <TouchableOpacity className="flex-row items-center gap-2">
+                <Text className="font-body text-sm text-gray-200">
+                  Ler mais
+                </Text>
+                <Icon name="arrow-right" size={16} color="#9e9ea0" />
+              </TouchableOpacity>
+            </Link>
+          </View>
         </View>
       </View>
     </ScrollView>
