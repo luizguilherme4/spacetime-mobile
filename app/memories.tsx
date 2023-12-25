@@ -80,17 +80,22 @@ export default function NewMemory() {
                 </Text>
               </View>
               <View className="space-y-4">
-                <Image
-                  source={{
-                    uri: memory.coverUrl,
-                  }}
-                  className="aspect-square w-full rounded-lg"
-                  alt=""
-                />
+                {memory.coverUrl && (
+                  <Image
+                    source={{
+                      uri: memory.coverUrl,
+                    }}
+                    className="aspect-video w-full rounded-lg"
+                    alt=""
+                  />
+                )}
                 <Text className="font-body text-base leading-relaxed text-gray-100">
                   {memory.excerpt}
                 </Text>
-                <Link href="/memories/id" asChild>
+                <Link
+                  href={{ pathname: '/details', params: { id: memory.id } }}
+                  asChild
+                >
                   <TouchableOpacity className="flex-row items-center gap-2">
                     <Text className="font-body text-sm text-gray-200">
                       Ler mais
