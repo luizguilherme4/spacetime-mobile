@@ -92,17 +92,32 @@ export default function NewMemory() {
                 <Text className="font-body text-base leading-relaxed text-gray-100">
                   {memory.excerpt}
                 </Text>
-                <Link
-                  href={{ pathname: '/details', params: { id: memory.id } }}
-                  asChild
-                >
-                  <TouchableOpacity className="flex-row items-center gap-2">
-                    <Text className="font-body text-sm text-gray-200">
-                      Ler mais
-                    </Text>
-                    <Icon name="arrow-right" size={16} color="#9e9ea0" />
-                  </TouchableOpacity>
-                </Link>
+
+                <View className="flex-row justify-between">
+                  <Link
+                    href={{ pathname: '/details', params: { id: memory.id } }}
+                    asChild
+                  >
+                    <TouchableOpacity className="flex-row items-center gap-2">
+                      <Text className="font-body text-sm text-gray-200">
+                        Ler mais
+                      </Text>
+                      <Icon name="arrow-right" size={16} color="#9e9ea0" />
+                    </TouchableOpacity>
+                  </Link>
+
+                  <Link
+                    href={{ pathname: '/edit', params: { id: memory.id } }}
+                    asChild
+                  >
+                    <TouchableOpacity className="flex-row items-center gap-2">
+                      <Text className="font-body text-sm text-gray-200">
+                        Editar
+                      </Text>
+                      <Icon name="edit" size={16} color="#9e9ea0" />
+                    </TouchableOpacity>
+                  </Link>
+                </View>
               </View>
             </View>
           )
