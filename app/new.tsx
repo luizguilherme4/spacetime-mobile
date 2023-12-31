@@ -62,19 +62,25 @@ export default function NewMemory() {
       coverUrl = uploadResponse.data.fileUrl
     }
 
-    await api.post(
-      '/memories',
-      {
-        content,
-        isPublic,
-        coverUrl,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    await api
+      .post(
+        '/memories',
+        {
+          content,
+          isPublic,
+          coverUrl,
         },
-      },
-    )
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then(() => {
+        router.push('/memories')
+        router.replace('/memories')
+      })
+      .catch((error) => console.log(error))
 
     router.push('/memories')
   }

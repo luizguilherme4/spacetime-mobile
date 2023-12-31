@@ -41,6 +41,22 @@ export default function NewMemory() {
     setMemories(response.data)
   }
 
+  async function deleteMemory(id: string) {
+    const token = await SecureStore.getItemAsync('token')
+
+    await api
+      .delete(`/memories/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        router.push('/memories')
+        router.replace('/memories')
+      })
+      .catch((error) => console.log(error))
+  }
+
   useEffect(() => {
     loadMemories()
   }, [])
@@ -117,6 +133,16 @@ export default function NewMemory() {
                       <Icon name="edit" size={16} color="#9e9ea0" />
                     </TouchableOpacity>
                   </Link>
+
+                  <TouchableOpacity
+                    className="flex-row items-center gap-2"
+                    onPress={() => deleteMemory(memory.id)}
+                  >
+                    <Text className="font-body text-sm text-gray-200">
+                      Excluir
+                    </Text>
+                    <Icon name="trash" size={16} color="#9e9ea0" />
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
